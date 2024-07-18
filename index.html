@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metodos de adicion y eliminacion</title>
+</head>
+<body>
+  <script>
+    //Array del inventario
+    let inventario = [
+      { 
+        nombre: 'leche',
+        cantidad: 10,
+      },
+      {
+        nombre: 'pan',
+        cantidad: 20,
+      },
+      {
+        nombre: 'huevos',
+        cantidad: 30
+      }
+    ]
+    //Agregando producto al comienzo utilizando unshift
+    inventario.unshift({nombre: 'manzanas',
+      cantidad: 50
+    })
+    //Agregando productos al final utilizando push
+    inventario.push({nombre: 'naranjas',
+      cantidad: 30
+    },
+    {nombre: 'platanos',
+    cantidad: 40})
+    //Remplazando un producto con splice
+    inventario.splice(1, 1, {nombre: 'fresa',
+      cantidad: 25
+    })
+
+    inventario.splice(2, 0, {nombre: 'uvas',
+      cantidad: 60
+    })
+
+  let ProductoEliminadoPrimero = inventario.shift()
+  let ProductoEliminadoUltimo = inventario.pop()
+  let ProductoEliminadoDeCuartaPosisicion =  inventario.splice(3, 1)
+
+  console.log(inventario)
+  console.log(ProductoEliminadoPrimero)
+  console.log(ProductoEliminadoUltimo)
+  console.log(ProductoEliminadoDeCuartaPosisicion)
+
+  let ventas = [
+            {producto: 'manzanas', cantidad: 5, precio: 2},
+            {producto: 'naranjas', cantidad: 12, precio: 1.5},
+            {producto: 'platanos', cantidad: 8, precio: 1},
+            {producto: 'fresas', cantidad: 15, precio: 3},
+            {producto: 'uvas', cantidad: 7, precio: 2.5}
+    ]
+
+    //Calculando el total de ingresos con Reduce
+    let totalIngresos = ventas.reduce((acc, item) => {
+      return acc += item.cantidad * item.precio
+    }, 0)
+
+    //Filtrando las ventas grandes con Filter
+    let ventasGrandes = ventas.filter(x => x.cantidad >= 10)
+
+    //Mostrando los productos vendidos con Map
+    let productosVendidos = ventas.map(x => x.producto)
+
+    //Cantidad total vendida por cada producto con ForEach
+    let cantidadPorProducto = ventas.forEach(x => console.log(x.producto,":",x.cantidad))
+
+    //Oredenando las ventas por ingresos con Sort
+    let ventasOrdenadas = ventas.sort((a,b) => a.precio - b.precio)
+
+    //Total de ingresos
+    console.log("Total de ingresos:",totalIngresos)
+    //Ventas grandes
+    console.log("Ventas grandes:",ventasGrandes)
+    //Productos vendidos
+    console.log("Productos vendidos:", productosVendidos)
+    //Ventas ordenadas por ingresos
+    console.log(ventasOrdenadas)
+
+    let biblioteca = [{
+      titulo: 'Cien años de soledad', autor: 'Gabriel Garcia Marquez', año: 1967, disponible: true},
+    { titulo: 'Don Quijote de la Mancha', autor: 'Miguel de Cervantes', año: 1605, disponible: false},
+    { titulo: 'El Principito', autor: 'Antoine Saint-Exupery', año: 1943, disponible: true},
+    { titulo: '1984', autor: 'George Orwell', año: 1949, disponible: false},
+    { titulo: 'Ficciones', autor: 'Jorge Luis Borges', año: 1944, disponible: true}
+  ]
+
+  let nuevosLibros = [
+    {titulo: 'Rayuela', autor: 'Julio Cortazar', año: 1963, disponible: true},
+    {titulo: 'Pedro Paramo', autor: 'Juan Rulfo', año: 1955, disponible: true}
+  ]
+
+  //Buscando un objeto en el array con Find
+  let libroEspecifico = biblioteca.find(x => x.titulo === 'El Principito')
+
+  //Buscando un indice de un objeto en el array con FindIndex
+  let indiceLibro = biblioteca.findIndex(x => x.autor === 'Gabriel Garcia Marquez')
+
+  //Verificar disponibilidad usando Some
+  let hayDisponible = biblioteca.some(x => x.disponible === true)
+
+  //Verificar todos los libros de un autor usando Every
+  let todosDisponibles = biblioteca.every(x => x.autor === 'Miguel de Cervantes')
+
+  //Combinar dos listas de libros usando Concant
+  let listaCombinada = biblioteca.concat(nuevosLibros)
+
+  //Sublista de libros recientes usando Slice
+  let librosRecientes = biblioteca.slice(0, 3)
+
+  //Ordenar los libros por año usando Sort
+  let librosOrdenados = biblioteca.sort((a,b) => a.año - b.año)
+
+  //Invertir el orden del array usando Reverse
+  let librosInvertidos = biblioteca.reverse()
+
+  //Crear cadena de titulos con Map y Join
+  let cadenaTitulos = biblioteca.map(x => x.titulo).join(', ')
+
+  //Libro especifico encontrado
+  console.log('Libro encontrado:',libroEspecifico)
+  //Indice del libro especifico
+  console.log('Indice del libro:',indiceLibro)
+  //Verificar disponibilidad
+  console.log('Hay libros disponibles:',hayDisponible)
+  //Verificar todos los libros disponibles de un autor
+  console.log('Libros disponibles:', todosDisponibles)
+  //Lista combinada
+  console.log('Lista combinada:', listaCombinada)
+  //Sublista de libros recientes
+  console.log('Libros recientes:', librosRecientes)
+  //Ordenar los libros por año
+  console.log('Lista de libros ordenados:',librosOrdenados)
+  //Invertir el orden de los libros
+  console.log('Lista de libros invertida', librosInvertidos)
+  //Cadena de titulos de libros
+  console.log('Cadena de titulos:', cadenaTitulos)
+  </script>
+</body>
+</html>
